@@ -29,6 +29,8 @@ module Calc_tb_1;
 	integer 	     error_count; // 32-bit signed
 
 	integer 	     correct_count; // 32-bit signed
+	integer       timeout;
+	reg [3:0] previous_operation;
 
 	localparam 	No_Op = 4'b0000,
 				Add = 4'b0001,
@@ -47,10 +49,10 @@ module Calc_tb_1;
 	
 	int array1 [int];
 	
-	reg [3:0] cmd_array[0:3];
-	reg [31:0] data_in_array[0:3];
-	wire [1:0] out_resp_array[0:3];
-	wire [31:0] out_data_array[0:3];
+	reg [3:0] cmd_array[0:4];
+	reg [31:0] data_in_array[0:4];
+	wire [1:0] out_resp_array[0:4];
+	wire [31:0] out_data_array[0:4];
 
 	//reg [1:0] Opcode;	// The opcode
 
@@ -86,52 +88,63 @@ module Calc_tb_1;
       error_count = 0;
       correct_count = 0;
       
-      /*
-      //Initializing the cmd array
-     	cmd_array[0] = req1_cmd_in;
-     	cmd_array[1] = req2_cmd_in;
-     	cmd_array[2] = req3_cmd_in;
-     	cmd_array[3] = req4_cmd_in;
-     	
-     	//Initializing the data in array
-     	data_in_array[0] = req1_data_in;
-     	data_in_array[1] = req2_data_in;
-     	data_in_array[2] = req3_data_in;
-     	data_in_array[3] = req4_data_in;
-     	
-     	//Initializing the out resp array
-     	out_resp_array[0] = out_resp1;
-     	out_resp_array[1] = out_resp2;
-     	out_resp_array[2] = out_resp3;
-     	out_resp_array[3] = out_resp4;
-     	
-     	//Initializing the out data array
-     	//out_data_array[0] = out_data1;
-     	out_data_array[1] = out_data2;
-     	out_data_array[2] = out_data3;
-     	out_data_array[3] = out_data4;
-     	*/
-     	      
-      ///////////////////////////////////////////////// Test 1.1 ///////////////////////////////////////////////
-      assert_reset;      
-      check_result_1(0, Add, 32'h80002345, 32'h00010000, 32'h80012345);
-	  
-	    ///////////////////////////////////////////////// Test 2.1.1 ///////////////////////////////////////////// 64 tests 
-	    assert_reset;
-
 	    array1[0] = Add;
 	    array1[1] = Sub;
 	    array1[2] = Left_shift;
 	    array1[3] = Right_shift;
+     	      
+      ///////////////////////////////////////////////// Test 1.1 ///////////////////////////////////////////////
+      assert_reset;      
+      check_result_1(0, Add, 32'h80002345, 32'h00010000, 32'h80012345);
+      check_result_1(1, Add, 32'h80002345, 32'h00010000, 32'h80012345); 
+      check_result_1(2, Add, 32'h80002345, 32'h00010000, 32'h80012345);
+      check_result_1(3, Add, 32'h80002345, 32'h00010000, 32'h80012345);
+      
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
+      /*
+	  
+	    ///////////////////////////////////////////////// Test 2.1.1 ///////////////////////////////////////////// 128 tests total ( 16*2 = 32 tests for each port)
+	    assert_reset;
+
 	    
 	    temp_Op1 = 32'h00002000;
       temp_Op2 = 32'h00000001;
       	    
-	    for (integer i = 0; i < 4; i = i+1) begin
-	      for (integer j = 0; j < 4; j = j+1) begin
-	        check_operation(0, array1[i], temp_Op1, temp_Op2);
+	    for (integer i = 0; i < 4; i = i+1) begin //Iterate through the 4 ports available
+	      for (integer j = 0; j < 4; j = j+1) begin //First command
+	        for (integer k = 0; k < 4; k = k+1) begin //Second command
+	          check_operation(i, array1[j], temp_Op1, temp_Op2);
+	          check_operation(i, array1[k], temp_Op1, temp_Op2);
+	        end
 	      end
 	    end
+
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////	    
+	    
+	    ///////////////////////////////////////////////// Test 2.1.2 ///////////////////////////////////////////// 128 tests total ( 16*2 = 32 tests for each port)
+	    assert_reset;
+
+	    
+	    temp_Op1 = 32'h00002000;
+      temp_Op2 = 32'h00000001;
+      	    
+	    for (integer i = 0; i < 4; i = i+1) begin //First command
+	      for (integer j = 0; j < 4; j = j+1) begin //Second command
+	        for (integer k = 0; k < 4; k = k+1) begin //Iterate through the 4 ports available
+	          check_operation(k, array1[i], temp_Op1, temp_Op2);
+	        end
+	        
+	        for (integer k = 0; k < 4; k = k+1) begin //Iterate through the 4 ports available
+	          check_operation(k, array1[j], temp_Op1, temp_Op2);
+	        end
+	        
+	      end
+	    end
+	    
+      //////////////////////////////////////////////////////////////////////////////////////////////////////////
+      
+      */
 	    
   end
 
@@ -144,8 +157,14 @@ module Calc_tb_1;
 		
 		repeat(3) @(negedge clk);
 		
+		timeout = 0;
+		
 		while (out_resp_array[i] === 2'b00) begin
 			@(negedge clk);
+			timeout = timeout + 1;
+			
+			if ( timeout >= 20)
+			  break;
 		end
 		
 		if (expected_result !== out_data_array[i]) begin
@@ -165,16 +184,24 @@ module Calc_tb_1;
 		
 		repeat(3) @(negedge clk);
 		
+    timeout = 0;
+		
 		while (out_resp_array[i] === 2'b00) begin
 			@(negedge clk);
+			timeout = timeout + 1;
+			
+			if ( timeout >= 20)
+			  break;
 		end
 		
-		if (out_resp_array[i] === 2'b10) begin
+		if (out_resp_array[i] === 2'b10 || timeout >= 20) begin
 			error_count = error_count + 1;
-			//$display("%t: Error: For Cmd = %0b, Operand1= 0d%0d, and Operand2=0d%0d C should equal 0d%0d but is 0d%0d ", $time, Cmd, Operand1, Operand2, expected_result, out_data1);
+			$display("%t: Error: For Cmd = %0b, Previous Cmd = %0b, Port Number = %0d", $time, Cmd, previous_operation, (i+1));
 		end
 		else if (out_resp_array[i] === 2'b01)
 			correct_count = correct_count + 1;
+			
+		previous_operation = Cmd;
 	endtask
 	
 	task assert_reset;
