@@ -129,7 +129,7 @@ module Calc_tb_1;
       	    
 	    for (integer i = 0; i < 4; i = i+1) begin
 	      for (integer j = 0; j < 4; j = j+1) begin
-	        check_operation(array1[i], temp_Op1, temp_Op2);
+	        check_operation(0, array1[i], temp_Op1, temp_Op2);
 	      end
 	    end
 	    
@@ -156,24 +156,24 @@ module Calc_tb_1;
 			correct_count = correct_count + 1;
 	endtask
 	
-	task check_operation (input [3:0] Cmd, input [31:0] Operand1, Operand2);
-		req1_cmd_in = Cmd;
-		req1_data_in = Operand1;
+	task check_operation (input integer i, input [3:0] Cmd, input [31:0] Operand1, Operand2);
+		cmd_array[i] = Cmd;
+		data_in_array[i] = Operand1;
 		@(negedge clk);
-		req1_cmd_in = No_Op;
-		req1_data_in = Operand2;
+		cmd_array[i] = No_Op;
+		data_in_array[i] = Operand2;
 		
 		repeat(3) @(negedge clk);
 		
-		while (out_resp1 === 2'b00) begin
+		while (out_resp_array[i] === 2'b00) begin
 			@(negedge clk);
 		end
 		
-		if (out_resp1 === 2'b10) begin
+		if (out_resp_array[i] === 2'b10) begin
 			error_count = error_count + 1;
 			//$display("%t: Error: For Cmd = %0b, Operand1= 0d%0d, and Operand2=0d%0d C should equal 0d%0d but is 0d%0d ", $time, Cmd, Operand1, Operand2, expected_result, out_data1);
 		end
-		else if (out_resp1 === 2'b01)
+		else if (out_resp_array[i] === 2'b01)
 			correct_count = correct_count + 1;
 	endtask
 	
