@@ -47,10 +47,10 @@ module Calc_tb_1;
 	
 	int array1 [int];
 	
-	reg [3:0] cmd_array[0:3];
-	reg [31:0] data_in_array[0:3];
+	reg [3:0] cmd_array[int];
+	reg [31:0] data_in_array[int];
 	wire [1:0] out_resp_array[0:3];
-	wire [31:0] out_data_array[0:3];
+	reg [31:0] out_data_array[int];
 
 	//reg [1:0] Opcode;	// The opcode
 
