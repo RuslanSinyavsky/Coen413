@@ -58,6 +58,16 @@ module alu_test();
       if (!(out_data1 === 32'h80012345)) begin
         $display("error at port 1 addition");
       end      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left 1 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left 1 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left 1 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       // port 2 #######################################################################
       req2_cmd_in = 4'b0001; req2_data_in = 32'h80002345; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h00010000;
       repeat(3) @(negedge c_clk);
@@ -73,6 +83,17 @@ module alu_test();
       if (!(out_data2 === 32'h80012345)) begin
         $display("error at port 2 addition");
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 addition outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 addition outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 addition outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 3 #######################################################################
       req3_cmd_in = 4'b0001; req3_data_in = 32'h80002345; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h00010000;
       repeat(3) @(negedge c_clk);
@@ -88,6 +109,17 @@ module alu_test();
       if (!(out_data3 === 32'h80012345)) begin
         $display("error at port 3 addition");
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 addition outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 addition outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 addition outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0001; req4_data_in = 32'h80002345; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h00010000;
       repeat(3) @(negedge c_clk);
@@ -103,6 +135,17 @@ module alu_test();
       if (!(out_data4 === 32'h80012345)) begin
         $display("error at port 4 addition");
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 addition outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 addition outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 addition outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+
       
       //test substraction ****************************************************************************
       //port 1 #######################################################################
@@ -120,6 +163,17 @@ module alu_test();
       if (!(out_data1 === 32'hEEEEEEEE)) begin
         $display("error at port 1 substraction");
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 substraction outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 substraction outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 substraction outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 2 #######################################################################
       req2_cmd_in = 4'b0010; req2_data_in = 32'hFFFFFFFF; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h11111111; 
       repeat(3) @(negedge c_clk);
@@ -135,6 +189,17 @@ module alu_test();
       if (!(out_data2 === 32'hEEEEEEEE)) begin
         $display("error at port 2 substraction");
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 subtraction outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 subtraction outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 subtraction outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 3 #######################################################################
       req3_cmd_in = 4'b0010; req3_data_in = 32'hFFFFFFFF; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h11111111;  
       repeat(3) @(negedge c_clk);
@@ -150,6 +215,18 @@ module alu_test();
       if (!(out_data3 === 32'hEEEEEEEE)) begin
         $display("error at port 3 substraction");
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 subtraction outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 subtraction outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 subtraction outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0010; req4_data_in = 32'hFFFFFFFF; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h11111111; 
       repeat(3) @(negedge c_clk);
@@ -165,6 +242,18 @@ module alu_test();
       if (!(out_data4 === 32'hEEEEEEEE)) begin
         $display("error at port 4 substraction");
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 substraction outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 substraction outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 substraction outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      
+
 
       
       //test shift left ****************************************************************************
@@ -183,6 +272,19 @@ module alu_test();
       if (!(out_data1 === 32'h80000000)) begin
         $display("error at port 1 shift left outVal: %0b", out_data1);
       end
+      
+         
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
+
       //port 2 #######################################################################
       req2_cmd_in = 4'b0101; req2_data_in = 32'h00000001; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h000001FF;
       repeat(3) @(negedge c_clk);
@@ -198,6 +300,18 @@ module alu_test();
       if (!(out_data2 === 32'h80000000)) begin
         $display("error at port 2 shift left outVal: %0b", out_data2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift left outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0101; req3_data_in = 32'h00000001; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h000001FF;
       repeat(3) @(negedge c_clk);
@@ -213,6 +327,17 @@ module alu_test();
       if (!(out_data3 === 32'h80000000)) begin
         $display("error at port 3 shift left outVal: %0b", out_data3);
       end
+        
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift left outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 4 #######################################################################
       req4_cmd_in = 4'b0101; req4_data_in = 32'h00000001; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h000001FF;
       repeat(3) @(negedge c_clk);
@@ -227,6 +352,16 @@ module alu_test();
 		  end      
       if (!(out_data4 === 32'h80000000)) begin
         $display("error at port 4 shift left outVal: %0b", out_data4);
+      end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift left outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
 
       //test shift right ****************************************************************************
@@ -245,6 +380,18 @@ module alu_test();
       if (!(out_data1 === 32'h00000001)) begin
         $display("error at port 1 shift right outVal: %0b", out_data1);
       end
+      
+    
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift right outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift right outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift right outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 2 #######################################################################
       req2_cmd_in = 4'b0110; req2_data_in = 32'h80000000; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h000001FF;
       repeat(3) @(negedge c_clk);
@@ -260,6 +407,18 @@ module alu_test();
       if (!(out_data2 === 32'h00000001)) begin
         $display("error at port 2 shift right outVal: %0b", out_data2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift right outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift right outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift right outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0110; req3_data_in = 32'h80000000; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h000001FF;
       repeat(3) @(negedge c_clk);
@@ -275,6 +434,18 @@ module alu_test();
       if (!(out_data3 === 32'h00000001)) begin
         $display("error at port 3 shift right outVal: %0b", out_data3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift right outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift right outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift right outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
+
       //port 4 #######################################################################
       req4_cmd_in = 4'b0110; req4_data_in = 32'h80000000; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h000001FF;
       repeat(3) @(negedge c_clk);
@@ -291,6 +462,17 @@ module alu_test();
         $display("error at port 4 shift right outVal: %0b", out_data4);
       end
       
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift right outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift right outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift right outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      
+
      
       //test underflow ****************************************************************************
       //port 1 #######################################################################
@@ -308,6 +490,17 @@ module alu_test();
       if (!(out_resp1 === 2'b10)) begin
         $display("error at port 1 underflow outVal: %b0, respVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 underflow outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 underflow outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 underflow outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 2 #######################################################################
       req2_cmd_in = 4'b0010; req2_data_in = 32'h11111111; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h20000000;
       repeat(3) @(negedge c_clk);
@@ -323,6 +516,17 @@ module alu_test();
       if (!(out_resp2 === 2'b10)) begin
         $display("error at port 2 underflow outVal: %b0, respVal: %b0", out_data2, out_resp2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 underflow outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 underflow outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 underflow outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0010; req3_data_in = 32'h11111111; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h20000000;
       repeat(3) @(negedge c_clk);
@@ -338,6 +542,17 @@ module alu_test();
       if (!(out_resp3 === 2'b10)) begin
         $display("error at port 3 underflow outVal: %b0, respVal: %b0", out_data3, out_resp3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 underflow outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 underflow outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 underflow outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0010; req4_data_in = 32'h11111111; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h20000000;
       repeat(3) @(negedge c_clk);
@@ -352,6 +567,16 @@ module alu_test();
 		  end        
       if (!(out_resp4 === 2'b10)) begin
         $display("error at port 4 underflow outVal: %b0, respVal: %b0", out_data4, out_resp4);
+      end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 underflow outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 underflow outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 underflow outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
       
       //test overflow ****************************************************************************
@@ -370,6 +595,17 @@ module alu_test();
       if (!(out_resp1 === 2'b10)) begin
         $display("error at port 1 overflow outVal: %b0, respVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 overflow outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 overflow outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 overflow outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 2 #######################################################################
       req2_cmd_in = 4'b0001; req2_data_in = 32'hFFFFFFFF; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h00000001;
       repeat(3) @(negedge c_clk);
@@ -385,6 +621,18 @@ module alu_test();
       if (!(out_resp2 === 2'b10)) begin
         $display("error at port 2 overflow outVal: %b0, respVal: %b0", out_data2, out_resp2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 overflow outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 overflow outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 overflow outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0001; req3_data_in = 32'hFFFFFFFF; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h00000001;
       repeat(3) @(negedge c_clk);
@@ -400,6 +648,18 @@ module alu_test();
       if (!(out_resp3 === 2'b10)) begin
         $display("error at port 3 overflow outVal: %b0, respVal: %b0", out_data3, out_resp3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 overflow outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 overflow outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 overflow outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0001; req4_data_in = 32'hFFFFFFFF; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h00000001;
       repeat(3) @(negedge c_clk);
@@ -414,7 +674,18 @@ module alu_test();
 		  end       
       if (!(out_resp4 === 2'b10)) begin
         $display("error at port 4 overflow outVal: %b0, respVal: %b0", out_data4, out_resp4);
-      end    
+      end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 overflow outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 overflow outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 overflow outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+          
       
       //test underflow by 1****************************************************************************
       //port 1 #######################################################################
@@ -432,6 +703,18 @@ module alu_test();
       if (!(out_resp1 === 2'b10)) begin
         $display("error at port 1 underflow by 1 outVal: %b0, respVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 underflow by 1 outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 underflow by 1 outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 underflow by 1 outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
+      
       //port 2 #######################################################################
       req2_cmd_in = 4'b0010; req2_data_in = 32'h11111111; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h20000000;
       repeat(3) @(negedge c_clk);
@@ -447,6 +730,18 @@ module alu_test();
       if (!(out_resp2 === 2'b10)) begin
         $display("error at port 2 underflow by 1 outVal: %b0, respVal: %b0", out_data2, out_resp2);
       end
+      
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 underflow by 1 outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 underflow by 1 outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 underflow by 1 outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0010; req3_data_in = 32'h11111111; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h20000000;
       repeat(3) @(negedge c_clk);
@@ -462,6 +757,18 @@ module alu_test();
       if (!(out_resp3 === 2'b10)) begin
         $display("error at port 3 underflow by 1 outVal: %b0, respVal: %b0", out_data3, out_resp3);
       end
+      
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 underflow by 1 outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 underflow by 1 outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 underflow by 1 outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0010; req4_data_in = 32'h11111111; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h20000000;
       repeat(3) @(negedge c_clk);
@@ -478,7 +785,17 @@ module alu_test();
         $display("error at port 4 underflow by 1 outVal: %b0, respVal: %b0", out_data4, out_resp4);
       end
       
-
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 underflow by 1 outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 underflow by 1 outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 underflow by 1 outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      
    
       //test sum add two numbers whose sum is FFFFFFFF ****************************************************************************
       //port 1 #######################################################################
@@ -496,6 +813,16 @@ module alu_test();
       if (!(out_data1 === 32'hFFFFFFFF)) begin
         $display("error at port 1 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
       //port 2 #######################################################################
       req2_cmd_in = 4'b0001; req2_data_in = 32'hEEEEEEEE; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h11111111; 
       repeat(3) @(negedge c_clk);
@@ -511,6 +838,18 @@ module alu_test();
       if (!(out_data2 === 32'hFFFFFFFF)) begin
         $display("error at port 2 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data2, out_resp2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0001; req3_data_in = 32'hEEEEEEEE; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h11111111; 
       repeat(3) @(negedge c_clk);
@@ -526,6 +865,17 @@ module alu_test();
       if (!(out_data3 === 32'hFFFFFFFF)) begin
         $display("error at port 3 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 4 #######################################################################
       req4_cmd_in = 4'b0001; req4_data_in = 32'hEEEEEEEE; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h11111111; 
       repeat(3) @(negedge c_clk);
@@ -541,6 +891,17 @@ module alu_test();
       if (!(out_data4 === 32'hFFFFFFFF)) begin
         $display("error at port 4 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data4, out_resp4);
       end
+    
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 sum FFFFFFFF outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+
     
       //test substraction 2 equal numbers****************************************************************************
       //port 1 #######################################################################
@@ -558,6 +919,17 @@ module alu_test();
       if (!(out_data1 === 32'h00000000)) begin
         $display("error at port 1 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 2 #######################################################################
       req2_cmd_in = 4'b0010; req2_data_in = 32'hFFFFFFFF; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'hFFFFFFFF; 
       repeat(3) @(negedge c_clk);
@@ -573,6 +945,18 @@ module alu_test();
       if (!(out_data2 === 32'h00000000)) begin
         $display("error at port 2 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data2, out_resp2);
       end
+      
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0010; req3_data_in = 32'hFFFFFFFF; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'hFFFFFFFF;  
       repeat(3) @(negedge c_clk);
@@ -588,6 +972,17 @@ module alu_test();
       if (!(out_data3 === 32'h00000000)) begin
         $display("error at port 3 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0010; req4_data_in = 32'hFFFFFFFF; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'hFFFFFFFF; 
       repeat(3) @(negedge c_clk);
@@ -604,7 +999,16 @@ module alu_test();
         $display("error at port 4 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data4, out_resp4);
       end
        
-     
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 substraction 2equal numbers outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      
       //test shift left 0 places****************************************************************************
       //port 1 #######################################################################
       req1_cmd_in = 4'b0101; req1_data_in = 32'h00000010; @(negedge c_clk); req1_cmd_in = 4'b0000; req1_data_in = 32'h00000000;
@@ -621,6 +1025,17 @@ module alu_test();
       if (!(out_data1 === 32'h00000010)) begin
         $display("error at port 1 shift left 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 2 #######################################################################
       req2_cmd_in = 4'b0101; req2_data_in = 32'h00000010; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h00000000;
       repeat(3) @(negedge c_clk);
@@ -636,6 +1051,17 @@ module alu_test();
       if (!(out_data2 === 32'h00000010)) begin
         $display("error at port 2 shift left 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift left 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0101; req3_data_in = 32'h00000010; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h00000000;
       repeat(3) @(negedge c_clk);
@@ -651,6 +1077,17 @@ module alu_test();
       if (!(out_data3 === 32'h00000010)) begin
         $display("error at port 3 shift left 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift left 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b0101; req4_data_in = 32'h00000010; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h00000000;
       repeat(3) @(negedge c_clk);
@@ -665,6 +1102,16 @@ module alu_test();
 		  end      
       if (!(out_data4 === 32'h00000010)) begin
         $display("error at port 4 shift left 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift left 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
   
 
@@ -684,6 +1131,17 @@ module alu_test();
       if (!(out_data1 === 32'h08000000)) begin
         $display("error at port 1 shift right 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
+
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift right 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift right 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift right 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 2 #######################################################################
       req2_cmd_in = 4'b0110; req2_data_in = 32'h08000000; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h00000000;
       repeat(3) @(negedge c_clk);
@@ -699,6 +1157,17 @@ module alu_test();
       if (!(out_data2 === 32'h08000000)) begin
         $display("error at port 2 shift right 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift right 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift right 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift right 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b0110; req3_data_in = 32'h08000000; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h00000000;
       repeat(3) @(negedge c_clk);
@@ -714,6 +1183,17 @@ module alu_test();
       if (!(out_data3 === 32'h08000000)) begin
         $display("error at port 3 shift right 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
+
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift right 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift right 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift right 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+
       //port 4 #######################################################################
       req4_cmd_in = 4'b0110; req4_data_in = 32'h08000000; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h00000000;
       repeat(3) @(negedge c_clk);
@@ -728,6 +1208,16 @@ module alu_test();
 		  end      
       if (!(out_data4 === 32'h08000000)) begin
         $display("error at port 4 shift right 0 places outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 shift right 0 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift right 0 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift right 0 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
       
       
@@ -747,6 +1237,17 @@ module alu_test();
       if (!(out_resp1 === 2'b10)) begin
         $display("error at port 1 illegal command outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
+      
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 illegal command outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 illegal command outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 illegal command outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 2 #######################################################################
       req2_cmd_in = 4'b1000; req2_data_in = 32'h08000000; @(negedge c_clk); req2_cmd_in = 4'b0000; req2_data_in = 32'h00000001;
       repeat(3) @(negedge c_clk);
@@ -762,6 +1263,17 @@ module alu_test();
       if (!(out_resp2 === 2'b10)) begin
         $display("error at port 2 illegal command outVal: %b0, repVal: %b0", out_data2, out_resp2);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 illegal command outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 illegal command outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 illegal command outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 3 #######################################################################
       req3_cmd_in = 4'b1000; req3_data_in = 32'h08000000; @(negedge c_clk); req3_cmd_in = 4'b0000; req3_data_in = 32'h00000001;
       repeat(3) @(negedge c_clk);
@@ -777,6 +1289,17 @@ module alu_test();
       if (!(out_resp3 === 2'b10)) begin
         $display("error at port 3 illegal command outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
+      
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 illegal command outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 illegal command outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 illegal command outVal: %b0, repVal: %b0", out_data4, out_resp4);
+      end
+      
       //port 4 #######################################################################
       req4_cmd_in = 4'b1000; req4_data_in = 32'h08000000; @(negedge c_clk); req4_cmd_in = 4'b0000; req4_data_in = 32'h00000001;
       repeat(3) @(negedge c_clk);
@@ -793,6 +1316,16 @@ module alu_test();
         $display("error at port 4 illegal command outVal: %b0, repVal: %b0", out_data4, out_resp4);
       end
       
+      if (!(out_resp1 === 2'b00) || !(out_data1 === 2'b00')) begin
+        $display("error at port 1 illegal command outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 illegal command outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 illegal command outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      
       // COPIED ONE OF THE SHIFT TESTS AND SHIFT BY 1 INSTEAD OF 0
       //test shift left 1 places****************************************************************************
       //port 1 #######################################################################
@@ -807,14 +1340,16 @@ module alu_test();
 			 if ( timeout >= 20)
 			   			  break;  			  
 		  end      
-      if (!(out_data1 === 32'h00000100)) begin
+      if (!(out_data1 === 32'h00000020)) begin
         $display("error at port 1 shift left 1 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
       
       // here is part of row 'Check that the high-order 27 bits are ignored in the second operand of both shift commands.'
       //test shift left 1 places ignores top bit****************************************************************************
       //port 1 #######################################################################
-      req1_cmd_in = 4'b0101; req1_data_in = 32'h00000010; @(negedge c_clk); req1_cmd_in = 4'b0000; req1_data_in = 32'h10000001;
+      req1_cmd_in = 4'b0101; req1_data_in = 32'h00000010;
+      @(negedge c_clk);
+      req1_cmd_in = 4'b0000; req1_data_in = 32'h10000001;
       repeat(3) @(negedge c_clk);
       		timeout = 0;
 
@@ -825,14 +1360,74 @@ module alu_test();
 			 if ( timeout >= 20)
 			   			  break;  			  
 		  end      
-      if (!(out_data1 === 32'h00000100)) begin
+      if (!(out_data1 === 32'h00000020)) begin
         $display("error at port 1 shift left 1 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
       
-      // this is part of row 'Check all outputs all of the time. Calc1 should not generate superfluous output values.'
-      if ((!(out_resp2 === 2'b00)) begin
+      //port 2 #######################################################################
+      req2_cmd_in = 4'b0101; req2_data_in = 32'h00000010;
+      @(negedge c_clk);
+      req2_cmd_in = 4'b0000; req2_data_in = 32'h10000001;
+      repeat(3) @(negedge c_clk);
+      		timeout = 0;
+
+      while (out_resp2 === 2'b00) begin
+			 @(negedge c_clk);
+			 timeout = timeout + 1;
+			
+			 if ( timeout >= 20)
+			   			  break;  			  
+		  end      
+      if (!(out_data2 === 32'h00000020)) begin
+        $display("error at port 2 shift left 1 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
       end
-      if ((!(out_resp3 === 2'b00)) begin
+      
+      //port 3 #######################################################################
+      req3_cmd_in = 4'b0101; req3_data_in = 32'h00000010;
+      @(negedge c_clk);
+      req3_cmd_in = 4'b0000; req3_data_in = 32'h10000001;
+      repeat(3) @(negedge c_clk);
+      		timeout = 0;
+
+      while (out_resp1 === 2'b00) begin
+			 @(negedge c_clk);
+			 timeout = timeout + 1;
+			
+			 if ( timeout >= 20)
+			   			  break;  			  
+		  end      
+      if (!(out_data1 === 32'h00000020)) begin
+        $display("error at port 1 shift left 1 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      
+      //port 4 #######################################################################
+      req1_cmd_in = 4'b0101; req1_data_in = 32'h00000010;
+      @(negedge c_clk);
+      req1_cmd_in = 4'b0000; req1_data_in = 32'h10000001;
+      repeat(3) @(negedge c_clk);
+      		timeout = 0;
+
+      while (out_resp1 === 2'b00) begin
+			 @(negedge c_clk);
+			 timeout = timeout + 1;
+			
+			 if ( timeout >= 20)
+			   			  break;  			  
+		  end      
+      if (!(out_data1 === 32'h00000020)) begin
+        $display("error at port 1 shift left 1 places outVal: %b0, repVal: %b0", out_data1, out_resp1);
+      end
+      
+      
+      // this is part of row 'Check all outputs all of the time. Calc1 should not generate superfluous output values.'
+      if (!(out_resp2 === 2'b00) || !(out_data2 === 2'b00')) begin
+        $display("error at port 2 shift left 1 places outVal: %b0, repVal: %b0", out_data2, out_resp2);
+      end
+      if (!(out_resp3 === 2'b00) || !(out_data3 === 2'b00')) begin
+        $display("error at port 3 shift left 1 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
+      end
+      if (!(out_resp4 === 2'b00) || !(out_data4 === 2'b00')) begin
+        $display("error at port 4 shift left 1 places outVal: %b0, repVal: %b0", out_data3, out_resp3);
       end
       // etc or all outputs that are not affected in this command...(wip)
       
@@ -892,7 +1487,6 @@ module alu_test();
       req1_cmd_in = 4'b0000;
       req1_data_in = 32'h00000003;
 
-      
       repeat(3) @(negedge c_clk);
       		timeout = 0;
 
