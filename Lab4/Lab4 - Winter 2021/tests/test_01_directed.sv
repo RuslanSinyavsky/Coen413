@@ -55,14 +55,21 @@ function apb_trans get_transaction();
 // LAB: Create procedural code to generate 32 write transactions then
 // 32 read transactions
     if (trans_cnt < 32) begin
-        this.rand_tr.randomize() with {(transaction == WRITE);};
+        if (! this.rand_tr.randomize() with {(transaction == WRITE);})
+          begin
+            $display("apb_gen::randomize failed");
+            $finish;
+          end
     end
     else if(trans_cnt < 64) begin
-        this.rand_tr.randomize() with {(transaction == READ);};
+        if (! this.rand_tr.randomize() with {(transaction == READ);})
+          begin
+            $display("apb_gen::randomize failed");
+            $finish;
+          end
     end
 
-    get_transaction = tr;
-    
+    //get_transaction = tr;
     return rand_tr.copy();
   endfunction
   
