@@ -18,6 +18,7 @@
  */
 
 `define APB_MONITOR_IF	apb_monitor_if.monitor_cb
+`include "apb_env/apb_trans.sv"
 
 class apb_monitor;
 
