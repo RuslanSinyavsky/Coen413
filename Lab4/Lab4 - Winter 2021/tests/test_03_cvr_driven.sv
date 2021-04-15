@@ -36,23 +36,27 @@ parameter TEST_LENGTH = 64;
 program automatic test(apb_if hif);
 
 `include "env/env.sv"
-`include "hdl/root.sv"
 
 class my_gen extends apb_gen;
   
   // Define a coverage group aimed at ensuring that all
   // addresses, data and transactions are hit
+    parameter APB_ADDR_WIDTH = 16;
+    bit [APB_ADDR_WIDTH-1:0] new_apb_addr_t;
+    parameter APB_DATA_WIDTH = 32;
+    bit [APB_DATA_WIDTH-1:0] new_apb_data_t;
+    enum {READ, WRITE, IDLE} new_trans;
   covergroup TransCov;
     
 // LAB: Cover the transaction type 
-    trans: coverpoint trans_e;
+    trans: coverpoint new_trans;
 // LAB: Cover the address values
     // All addresses
-    addr: coverpoint apb_addr_t;
+    addr: coverpoint new_apb_addr_t;
     
 // LAB: Cover selected data values
     // Select data (4 values)
-    data: coverpoint apb_data_t{
+    data: coverpoint new_apb_data_t{
         bins a = {8’h00};
         bins b = {8’h55};
         bins c = {8’haa};
