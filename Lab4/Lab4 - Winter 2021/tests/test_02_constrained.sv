@@ -37,10 +37,15 @@ program automatic test(apb_if aif);
 
 // Extends the apb_trans to provide test-specific implementation
   class my_trans extends apb_trans;
-
+    
 // LAB: Create constraint block to generate 32 write transactions then
 // 32 read transactions.  Use the "if" construct to test trans_cnt.
-
+    constraint mode_c {
+        if (trans_cnt < 32)
+            transaction = WRITE;
+        else if (trans_cnt < 64)
+            transaction = READ;
+    }
 endclass
 
 

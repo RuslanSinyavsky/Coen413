@@ -84,7 +84,7 @@ class apb_master;
     task reset();
       `APB_MASTER_IF.Rst <= 0;
       idle();
-      ##5 `APB_MASTER_IF.Rst <= 1;
+      #5 `APB_MASTER_IF.Rst <= 1;
    endtask: reset
 
 
@@ -95,7 +95,7 @@ class apb_master;
       `APB_MASTER_IF.PWData  <= 0;
       `APB_MASTER_IF.PEnable <= 0;
       `APB_MASTER_IF.PWrite  <= 0;
-      ##1 `APB_MASTER_IF.PWrite  <= 0;
+      #1 `APB_MASTER_IF.PWrite  <= 0;
    endtask: idle
 
 
@@ -111,10 +111,10 @@ class apb_master;
      `APB_MASTER_IF.PSel   <= 1'b1;
 
      // Assert Penable
-     ##1 `APB_MASTER_IF.PEnable <= 1'b1;
+     #1 `APB_MASTER_IF.PEnable <= 1'b1;
 
      // Deassert Penable & return the read data
-     ##1 `APB_MASTER_IF.PEnable <= 1'b0;
+     #1 `APB_MASTER_IF.PEnable <= 1'b0;
      tr.data = `APB_MASTER_IF.PRData;
      mas2scb.put(tr);
   endtask: read
@@ -133,10 +133,10 @@ class apb_master;
      `APB_MASTER_IF.PSel   <= 1'b1;
 
      // Assert Penable
-     ##1 `APB_MASTER_IF.PEnable <= 1'b1;
+     #1 `APB_MASTER_IF.PEnable <= 1'b1;
 
      // Deassert it
-     ##1 `APB_MASTER_IF.PEnable <= 1'b0;
+     #1 `APB_MASTER_IF.PEnable <= 1'b0;
      mas2scb.put(tr);
   endtask: write
 
