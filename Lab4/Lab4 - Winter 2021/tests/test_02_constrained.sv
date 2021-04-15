@@ -42,9 +42,9 @@ program automatic test(apb_if aif);
 // 32 read transactions.  Use the "if" construct to test trans_cnt.
     constraint mode_c {
         if (trans_cnt < 32)
-            transaction = WRITE;
+            transaction == WRITE;
         else if (trans_cnt < 64)
-            transaction = READ;
+            transaction == READ;
     }
 endclass
 
