@@ -18,7 +18,7 @@
 
 program automatic test(apb_if apb);
 
-`include "env.sv"
+`include "env/env.sv"
 
 // Top level environment
 env the_env;
