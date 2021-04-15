@@ -86,6 +86,7 @@ class apb_gen;
     virtual function integer end_of_test();
         if (trans_cnt == max_trans_cnt) begin
             return 1;
+        end
         else begin
             return 0;
         end

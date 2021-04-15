@@ -40,7 +40,8 @@ class apb_monitor;
   endfunction: new
 
   task main();
-bit Sel;
+    bit Sel;
+    bit Rd_nWr;
     forever begin
 
       // Wait for the device to be selected
@@ -80,6 +81,6 @@ bit Sel;
     end // forever
   endtask: main
 
-endclass: apb_mon
+endclass: apb_monitor
 
 
