@@ -36,6 +36,7 @@ parameter TEST_LENGTH = 64;
 program automatic test(apb_if hif);
 
 `include "env/env.sv"
+`include "hdl/root.sv"
 
 class my_gen extends apb_gen;
   
