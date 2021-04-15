@@ -44,12 +44,19 @@ class my_gen extends apb_gen;
   covergroup TransCov;
 
 // LAB: Cover the transaction type 
-
+    tran: coverpoint trans_e;
 // LAB: Cover the address values
     // All addresses
+    addr: coverpoint apb_addr_t;
     
 // LAB: Cover selected data values
     // Select data (4 values)
+    data: coverpoint apb_data_t{
+        bins a = {8’h00};
+        bins b = {8’h55};
+        bins c = {8’haa};
+        bins d = {8’hff};
+    }
 
 
 // LAB: Now perform cross coverage
