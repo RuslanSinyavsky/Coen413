@@ -42,9 +42,9 @@ class my_gen extends apb_gen;
   // Define a coverage group aimed at ensuring that all
   // addresses, data and transactions are hit
   covergroup TransCov;
-
+    
 // LAB: Cover the transaction type 
-    tran: coverpoint trans_e;
+    trans: coverpoint trans_e;
 // LAB: Cover the address values
     // All addresses
     addr: coverpoint apb_addr_t;
