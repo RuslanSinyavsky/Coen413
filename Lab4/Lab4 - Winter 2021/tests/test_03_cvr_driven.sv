@@ -56,11 +56,11 @@ class my_gen extends apb_gen;
     
 // LAB: Cover selected data values
     // Select data (4 values)
-    data: coverpoint new_apb_data_t{
-        bins a = {8’h00};
-        bins b = {8’h55};
-        bins c = {8’haa};
-        bins d = {8’hff};
+    data: coverpoint new_apb_data_t {
+        bins a = {0};
+        bins b = {85};
+        bins c = {170};
+        bins d = {255};
     }
 
 
