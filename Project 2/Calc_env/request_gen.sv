@@ -17,7 +17,7 @@
  */
 
 
-`include "apb_env/calc_request.sv"
+`include "Calc_env/calc_request.sv"
 
 class request_gen;
 
@@ -68,8 +68,8 @@ class request_gen;
         //if(my_tr.transaction != IDLE)
           
   
-        if(verbose)
-          my_tr.display("Generator");
+        //if(verbose)
+          //my_tr.display("Generator");
 
         gen2mas.put(my_tr);
       end // while (!end_of_test())
@@ -88,7 +88,7 @@ class request_gen;
   endfunction
     
   // Returns a transaction (associated with tr member)
-  virtual function apb_trans get_transaction();
+  virtual function calc_request get_transaction();
     rand_tr.trans_cnt = trans_cnt;
     if (! this.rand_tr.randomize())
       begin

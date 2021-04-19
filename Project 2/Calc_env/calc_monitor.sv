@@ -19,7 +19,7 @@
  */
 
 `define CALC_MONITOR_IF	calc_monitor_if.monitor_cb
-`include "Calc_env/calc_request.sv"
+//`include "Calc_env/calc_request.sv"
 `include "Calc_env/calc_result.sv"
 
 
@@ -94,8 +94,8 @@ class calc_monitor;
         mon2scb.put(tr);
       end
       
-      if(verbose)
-        tr.display("Monitor");
+      //if(verbose)
+        //tr.display("Monitor");
 
     end // forever
   endtask: main

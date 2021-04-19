@@ -13,8 +13,8 @@
  * CONFIDENTIAL AND PROPRIETARY INFORMATION OF SYNOPSYS INC.
  *******************************************************************************
  */
-`ifndef CALC_IF_DEFINE
-`define CALC_IF_DEFINE
+`ifndef CALC_RESULT_DEFINE
+`define CALC_RESULT_DEFINE
 
 `include "hdl/root.sv"
 

@@ -18,10 +18,12 @@
 
 
 `define CALC_MASTER_IF	calc_master_if.master_cb
-`include "apb_env/calc_request.sv"
+`include "Calc_env/calc_request.sv"
 
   
-class calc_master (input Clk);
+class calc_master;
+    //Clock
+    bit Clk;
 
     // APB Interface (Master side)
     virtual calc_if.Master calc_master_if;
@@ -35,12 +37,13 @@ class calc_master (input Clk);
     // Constructor
     function new(virtual calc_if.Master calc_master_if, 
                  mailbox #(calc_request) gen2mas, mas2scb,
-                 bit verbose=0);
+                 bit verbose=0, bit Clk);
 
-      this.gen2mas       = gen2mas;
-      this.mas2scb       = mas2scb;    
+      this.gen2mas        = gen2mas;
+      this.mas2scb        = mas2scb;    
       this.calc_master_if = calc_master_if;
-      this.verbose       = verbose;
+      this.verbose        = verbose;
+      this.Clk            = Clk;
     endfunction: new
     
     // Main daemon. Runs forever to switch APB transaction to
@@ -58,8 +61,8 @@ class calc_master (input Clk);
         //Send request to DUT
         sendRequest(tr);
 
-        if(verbose)
-          tr.display("Master");
+        //if(verbose)
+          //tr.display("Master");
       end
 
        if(verbose)

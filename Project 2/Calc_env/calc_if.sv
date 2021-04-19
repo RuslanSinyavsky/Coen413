@@ -25,20 +25,20 @@ interface calc_if(input PClk);
     logic [1:0] PTag;
 
     //Input for DUT
-    wire [CALC_CMD_WIDTH-1:0] req1_cmd_in;
-    wire [CALC_CMD_WIDTH-1:0] req2_cmd_in;
-    wire [CALC_CMD_WIDTH-1:0] req3_cmd_in;
-    wire [CALC_CMD_WIDTH-1:0] req4_cmd_in;
+    logic [CALC_CMD_WIDTH-1:0] req1_cmd_in;
+    logic [CALC_CMD_WIDTH-1:0] req2_cmd_in;
+    logic [CALC_CMD_WIDTH-1:0] req3_cmd_in;
+    logic [CALC_CMD_WIDTH-1:0] req4_cmd_in;
 
-    wire [CALC_DATA_WIDTH-1:0]  req1_data_in;
-    wire [CALC_DATA_WIDTH-1:0]  req2_data_in;
-    wire [CALC_DATA_WIDTH-1:0]  req3_data_in;
-    wire [CALC_DATA_WIDTH-1:0]  req4_data_in;
+    logic [CALC_DATA_WIDTH-1:0]  req1_data_in;
+    logic [CALC_DATA_WIDTH-1:0]  req2_data_in;
+    logic [CALC_DATA_WIDTH-1:0]  req3_data_in;
+    logic [CALC_DATA_WIDTH-1:0]  req4_data_in;
 
-    wire [1:0]  req1_tag_in;
-    wire [1:0]  req2_tag_in;
-    wire [1:0]  req3_tag_in;
-    wire [1:0]  req4_tag_in;
+    logic [1:0]  req1_tag_in;
+    logic [1:0]  req2_tag_in;
+    logic [1:0]  req3_tag_in;
+    logic [1:0]  req4_tag_in;
 
     logic Rst;
 
@@ -110,7 +110,7 @@ interface calc_if(input PClk);
   modport Slave(input   PCmd, PData, PTag,
                 output  out_resp1, out_resp2, out_resp3, out_resp4,
                         out_data1, out_data2, out_data3, out_data4,
-                        out_tag1, out_tag2, out_tag3, out_tag4,
+                        out_tag1, out_tag2, out_tag3, out_tag4
                 );
   
 
