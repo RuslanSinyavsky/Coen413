@@ -22,8 +22,8 @@ module top;
   always #(simulation_cycle/2) 
     clk = ~clk;
 
-  apb_if apb(clk); // APB interafce
-  test   t1(apb);  // Testbench program
-  mem    m1(apb);  // Memory device
+  calc_if my_calc_if(clk); // APB interafce
+  //test   t1(apb);  // Testbench program
+  mem    m1(my_calc_if);  // Memory device
 
 endmodule  
