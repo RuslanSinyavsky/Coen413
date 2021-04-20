@@ -32,7 +32,12 @@ class scoreboard;
   
     covergroup cg_input;
         //input request
-        request_cmd: coverpoint mas_tr.cmd;
+        request_cmd: coverpoint mas_tr.cmd {
+          bins a = {4'b0001};
+          bins b = {4'b0010};
+          bins c = {4'b0101}; 
+          bins d = {4'b0110};
+        }
         request_data: coverpoint mas_tr.data;
         request_data2: coverpoint mas_tr.data2;
     endgroup
@@ -109,9 +114,9 @@ class scoreboard;
             
           default:
                 begin
-                  $display("@%0d: Fatal error: Scoreboard received illegal master transaction '%s'", 
-                           $time, mon_tr.out_Port);
-                  $finish;
+                  $display("@%0d: Fatal error: Scoreboard received illegal master transaction", 
+                           $time);
+                  //$finish;
                 end
             endcase
         end
@@ -146,7 +151,7 @@ class scoreboard;
               ->ended;
             
         end // forever
-    join
+    join_none
     
   endtask
 

@@ -18,7 +18,7 @@
  *******************************************************************************
  */
 
-`define CALC_MONITOR_IF	calc_monitor_if.monitor_cb
+`define CALC_MONITOR_IF	calc_monitor_if
 //`include "Calc_env/calc_request.sv"
 `include "Calc_env/calc_result.sv"
 
@@ -44,9 +44,16 @@ class calc_monitor;
   endfunction: new
 
   task main();
+    bit [3:0] dummy;
     forever begin
-
+      @(posedge calc_monitor_if.PClk)
+      //@(`CALC_MONITOR_IF.out_resp1 != 2'b00, `CALC_MONITOR_IF.out_resp2 != 2'b00, `CALC_MONITOR_IF.out_resp3 != 2'b00, `CALC_MONITOR_IF.out_resp4 != 2'b00)
+      
+      //@(`CALC_MONITOR_IF.out_resp1, `CALC_MONITOR_IF.out_resp2, `CALC_MONITOR_IF.out_resp3, `CALC_MONITOR_IF.out_resp4)
       // Check for response from port 1
+      
+      //$display("Resp is: %40b", `CALC_MONITOR_IF.out_resp1);
+      
       if (`CALC_MONITOR_IF.out_resp1 !== 2'b00) begin
         this.tr = new;
         tr.out_Resp = `CALC_MONITOR_IF.out_resp1;
@@ -93,9 +100,6 @@ class calc_monitor;
         // Pass the transaction to the scoreboard
         mon2scb.put(tr);
       end
-      
-      //if(verbose)
-        //tr.display("Monitor");
 
     end // forever
   endtask: main

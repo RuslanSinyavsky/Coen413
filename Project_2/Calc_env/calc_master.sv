@@ -17,7 +17,7 @@
  */
 
 
-`define CALC_MASTER_IF	calc_master_if.master_cb
+`define CALC_MASTER_IF	calc_master_if
 `include "Calc_env/calc_request.sv"
 
   
@@ -72,11 +72,13 @@ class calc_master;
   task  sendRequest(calc_request tr);
      // Drive Control bus
      @(posedge `CALC_MASTER_IF.PClk)
+     //#50;
      `CALC_MASTER_IF.PCmd  <= tr.cmd;
      `CALC_MASTER_IF.PData <= tr.data;
      `CALC_MASTER_IF.PTag <= tr.tag;
      
      @(posedge `CALC_MASTER_IF.PClk)
+     //#50;
      `CALC_MASTER_IF.PCmd  <= 4'b0000;
      `CALC_MASTER_IF.PData <= tr.data2;
      `CALC_MASTER_IF.PTag <= 2'b00;
@@ -85,9 +87,10 @@ class calc_master;
   endtask: sendRequest
   
   task reset();
-      `CALC_MASTER_IF.Rst <= 7'b1111111;
-      repeat(7) @(posedge `CALC_MASTER_IF.PClk);
-      `CALC_MASTER_IF.Rst <= 7'b0000000;
+      `CALC_MASTER_IF.Rst <= 1;
+      repeat(3) @(posedge `CALC_MASTER_IF.PClk);
+      //#20 `CALC_MASTER_IF.Rst <= 0;
+      `CALC_MASTER_IF.Rst <= 0;
    endtask: reset
 
 endclass: calc_master

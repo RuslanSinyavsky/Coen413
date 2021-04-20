@@ -90,11 +90,13 @@ class request_gen;
   // Returns a transaction (associated with tr member)
   virtual function calc_request get_transaction();
     rand_tr.trans_cnt = trans_cnt;
-    if (! this.rand_tr.randomize())
+    if (! this.rand_tr.randomize() with {rand_tr.cmd dist{4'b0001 := 25, 4'b0010 := 25, 4'b0101 := 25, 4'b0110 := 25};})
       begin
         $display("apb_gen::randomize failed");
         $finish;
       end
+      
+    $display("request_gen::cmd: %40b", rand_tr.cmd);
     return rand_tr.copy();
   endfunction
     

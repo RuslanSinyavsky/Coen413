@@ -28,10 +28,10 @@ module top;
   calc2_top     m1  (
                     .c_clk(clk),
                     .reset(my_calc_if.Rst),
-                    .req1_cmd_in(my_calc_if.req1_cmd_in,), //Cmd and data for all 4 input ports
-                    .req2_cmd_in(my_calc_if.req2_cmd_in,),
-                    .req3_cmd_in(my_calc_if.req3_cmd_in,),
-                    .req4_cmd_in(my_calc_if.req4_cmd_in,),
+                    .req1_cmd_in(my_calc_if.req1_cmd_in), //Cmd and data for all 4 input ports
+                    .req2_cmd_in(my_calc_if.req2_cmd_in),
+                    .req3_cmd_in(my_calc_if.req3_cmd_in),
+                    .req4_cmd_in(my_calc_if.req4_cmd_in),
                     
                     .req1_data_in(my_calc_if.req1_data_in),
                     .req2_data_in(my_calc_if.req2_data_in),
