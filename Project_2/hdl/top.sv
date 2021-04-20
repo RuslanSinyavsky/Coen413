@@ -25,7 +25,7 @@ module top;
   calc_if       my_calc_if(clk); // APB interafce
   test          t1(my_calc_if);  // Testbench program
   
-  calc_if.Slave my_slave_if = my_calc_if.Slave;
+  calc_if.Slave my_slave_if;
   calc2_top     m1( my_slave_if.out_data1, my_slave_if.out_data2, my_slave_if.out_data3, my_slave_if.out_data4, 
                     my_slave_if.out_resp1, my_slave_if.out_resp2, my_slave_if.out_resp3, my_slave_if.out_resp4, 
                     my_slave_if.out_tag1, my_slave_if.out_tag2, my_slave_if.out_tag3, my_slave_if.out_tag4, ,

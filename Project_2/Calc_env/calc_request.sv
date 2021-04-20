@@ -13,15 +13,15 @@
  * CONFIDENTIAL AND PROPRIETARY INFORMATION OF SYNOPSYS INC.
  *******************************************************************************
  */
-`ifndef CALC_IF_DEFINE
-`define CALC_IF_DEFINE
+`ifndef CALC_REQUEST_DEFINE
+`define CALC_REQUEST_DEFINE
 
-`include "hdl/root.sv"
+//`include "hdl/root.sv"
 
 class calc_request;
-    rand reg_cmd_t cmd;
-    rand req_data_t data;
-    rand req_data_t data2;
+    rand bit [3:0] cmd;
+    rand bit [31:0] data;
+    rand bit [31:0] data2;
     //rand trans_e transaction;
     static int count=0;
     bit [1:0] tag;
