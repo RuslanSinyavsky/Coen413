@@ -1,4 +1,5 @@
-`include ""
+`include "Calc_env/calc_request.sv"
+`include "Calc_env/calc_result.sv"
 
 class scoreboard;
 
@@ -17,11 +18,15 @@ class scoreboard;
   mailbox #(calc_result) mon2scb;   
 
   //Result of calc_request
-  calc_result_check res_check = CORRECT;
+  calc_result_check res_check;
   
   //request and result objects
   calc_request mas_tr;
   calc_result mon_tr;
+  
+  //others   
+  bit [31:0] expected_data_array[3:0];
+  bit [31:0] exp_val;
   
     covergroup cg_input;
         //input request
@@ -39,7 +44,7 @@ class scoreboard;
     endgroup
 
   // Constructor
-  function new(int max_trans_cnt, mailbox #(calc_request) mas2scb, #(calc_result) mon2scb, bit verbose=0);
+  function new(int max_trans_cnt, mailbox #(calc_request) mas2scb, mailbox #(calc_result) mon2scb, bit verbose=0);
     this.max_trans_cnt = max_trans_cnt;
 	this.mon2scb       = mon2scb;
     this.mas2scb       = mas2scb;
@@ -82,7 +87,7 @@ class scoreboard;
                 end
 
             //check for left shift				
-            4'b0101
+            4'b0101:
                 begin
                     exp_val = mas_tr.data << mas_tr.data2[4:0];
                     
@@ -112,11 +117,15 @@ class scoreboard;
         forever begin
             mon2scb.get(mon_tr);//output
             
+            //assuming the result is correct at first
+            res_check = CORRECT;
+            
             exp_val = expected_data_array[mon_tr.out_Tag];
             if (mon_tr.out_Resp != 2'b01)
                 $display("@%0d: ERROR monitor response (%h) does not match expected response (%h)",
                     $time, mon_tr.out_Resp, 2'b01);
-            else if (mon_tr.out_Data != exp_val) begin
+                    
+            if (mon_tr.out_Data != exp_val) begin
                 $display("@%0d: ERROR monitor data (%h) does not match expected value (%h)",
                     $time, mon_tr.out_Data, exp_val);
                 res_check = INCORRECT;

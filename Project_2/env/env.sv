@@ -21,8 +21,8 @@
 
 
 `include "Calc_env/calc_if.sv"
-`include "Calc_env/calc_master.sv"
 `include "Calc_env/calc_request.sv"
+`include "Calc_env/calc_master.sv"
 `include "Calc_env/calc_monitor.sv"
 `include "Calc_env/calc_result.sv"
 `include "Calc_env/request_gen.sv"

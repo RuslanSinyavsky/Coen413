@@ -16,8 +16,6 @@
 `ifndef CALC_RESULT_DEFINE
 `define CALC_RESULT_DEFINE
 
-`include "hdl/root.sv"
-
 class calc_result;
     bit [1:0] out_Resp;
     bit [31:0] out_Data;
