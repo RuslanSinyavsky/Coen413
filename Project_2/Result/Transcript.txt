@@ -1,8 +1,5 @@
 run
-#                    0: Starting apb_master
-#                  350: Starting apb_gen for 400 transactions
-#                  350: Ending apb_gen
-# 
+
 # @1750: On port #:           3, Cmd:                                     0001, Data1: 58b6e839, Data2: bef81dc8, ERROR monitor data (b7a5496a) does not match expected value (17af0601)
 # @1850: On port #:           4, Cmd:                                     0001, Data1: 58b6e839, Data2: bef81dc8, ERROR monitor data (b7a5496a) does not match expected value (17af0601)
 # @1950: On port #:           1, Cmd:                                     0110, Data1: 5f70e104, Data2: 7ffe0e62, ERROR monitor data (afdec68d) does not match expected value (17dc3841)
