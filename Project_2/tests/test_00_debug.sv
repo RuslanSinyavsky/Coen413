@@ -15,10 +15,9 @@
  *******************************************************************************
  */
 
+`include "env/env.sv"
 
 program automatic test(calc_if hif);
-
-`include "env/env.sv"
 
 // Top level environment
 env the_env;

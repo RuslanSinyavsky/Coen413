@@ -3,6 +3,8 @@
 
 class scoreboard;
 
+  typedef enum {CORRECT, INCORRECT} calc_result_check;
+  
   // Verbosity level
   bit verbose;
   

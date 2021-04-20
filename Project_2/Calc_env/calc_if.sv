@@ -82,6 +82,7 @@ interface calc_if(input PClk);
 
   clocking master_cb @(posedge PClk);
     default input #1 output #1;
+    input PClk;
     output  PCmd;
     output  PData;
     output  PTag;

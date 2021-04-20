@@ -72,12 +72,12 @@ class calc_master;
   task  sendRequest(calc_request tr);
      // Drive Control bus
      @(posedge `CALC_MASTER_IF.PClk)
-     `CALC_MASTER_IF.PAddr  <= tr.cmd;
+     `CALC_MASTER_IF.PCmd  <= tr.cmd;
      `CALC_MASTER_IF.PData <= tr.data;
      `CALC_MASTER_IF.PTag <= tr.tag;
      
      @(posedge `CALC_MASTER_IF.PClk)
-     `CALC_MASTER_IF.PAddr  <= 4'b0000;
+     `CALC_MASTER_IF.PCmd  <= 4'b0000;
      `CALC_MASTER_IF.PData <= tr.data2;
      `CALC_MASTER_IF.PTag <= 2'b00;
      
