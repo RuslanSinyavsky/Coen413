@@ -40,7 +40,7 @@ interface calc_if(input PClk);
     logic [1:0]  req3_tag_in;
     logic [1:0]  req4_tag_in;
 
-    logic Rst;
+    logic [6:0] Rst;
 
     //Output for DUT
     wire [1:0]  out_resp1;
@@ -57,6 +57,9 @@ interface calc_if(input PClk);
     wire [1:0]  out_tag2;
     wire [1:0]  out_tag3;
     wire [1:0]  out_tag4;
+    
+    //Clock
+    //bit Clk;
 
     always @ (posedge PClk) begin
         //Use the calc_request input to drive all 4 ports at the same time
@@ -82,6 +85,7 @@ interface calc_if(input PClk);
     output  PCmd;
     output  PData;
     output  PTag;
+    output  Rst; 
   endclocking
 
   clocking monitor_cb @(posedge PClk);
@@ -107,7 +111,9 @@ interface calc_if(input PClk);
   modport Master(clocking master_cb);
   modport Monitor(clocking monitor_cb);
 
-  modport Slave(input   PCmd, PData, PTag,
+  modport Slave(input   req1_cmd_in, req2_cmd_in, req3_cmd_in, req4_cmd_in,
+                        req1_data_in, req2_data_in, req3_data_in, req4_data_in,
+                        req1_tag_in, req2_tag_in, req3_tag_in, req4_tag_in,
                 output  out_resp1, out_resp2, out_resp3, out_resp4,
                         out_data1, out_data2, out_data3, out_data4,
                         out_tag1, out_tag2, out_tag3, out_tag4

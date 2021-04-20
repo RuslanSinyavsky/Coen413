@@ -22,8 +22,6 @@
 
   
 class calc_master;
-    //Clock
-    bit Clk;
 
     // APB Interface (Master side)
     virtual calc_if.Master calc_master_if;
@@ -37,13 +35,12 @@ class calc_master;
     // Constructor
     function new(virtual calc_if.Master calc_master_if, 
                  mailbox #(calc_request) gen2mas, mas2scb,
-                 bit verbose=0, bit Clk);
+                 bit verbose=0);
 
       this.gen2mas        = gen2mas;
       this.mas2scb        = mas2scb;    
       this.calc_master_if = calc_master_if;
       this.verbose        = verbose;
-      this.Clk            = Clk;
     endfunction: new
     
     // Main daemon. Runs forever to switch APB transaction to
@@ -74,18 +71,24 @@ class calc_master;
   // Sent the calc request to all 4 ports of the Calc
   task  sendRequest(calc_request tr);
      // Drive Control bus
-     @(posedge Clk)
+     @(posedge `CALC_MASTER_IF.PClk)
      `CALC_MASTER_IF.PAddr  <= tr.cmd;
      `CALC_MASTER_IF.PData <= tr.data;
      `CALC_MASTER_IF.PTag <= tr.tag;
      
-     @(posedge Clk)
+     @(posedge `CALC_MASTER_IF.PClk)
      `CALC_MASTER_IF.PAddr  <= 4'b0000;
      `CALC_MASTER_IF.PData <= tr.data2;
-     `CALC_MASTER_IF.PTag <= tr.tag;
+     `CALC_MASTER_IF.PTag <= 2'b00;
      
      mas2scb.put(tr);
   endtask: sendRequest
+  
+  task reset();
+      `CALC_MASTER_IF.Rst <= 7'b1111111;
+      repeat(7) @(posedge `CALC_MASTER_IF.PClk);
+      `CALC_MASTER_IF.Rst <= 7'b0000000;
+   endtask: reset
 
 endclass: calc_master
 
