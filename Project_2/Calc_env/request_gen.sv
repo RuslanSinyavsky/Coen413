@@ -96,7 +96,7 @@ class request_gen;
         $finish;
       end
       
-    $display("request_gen::cmd: %40b", rand_tr.cmd);
+    //$display("request_gen::cmd: %40b", rand_tr.cmd);
     return rand_tr.copy();
   endfunction
     

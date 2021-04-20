@@ -29,6 +29,7 @@ class scoreboard;
   //others   
   bit [31:0] expected_data_array[3:0];
   bit [31:0] exp_val;
+  calc_request request_array[3:0];
   
     covergroup cg_input;
         //input request
@@ -45,7 +46,10 @@ class scoreboard;
     covergroup cg_output;
         
         //output value
-        output_resp: coverpoint mon_tr.out_Resp;
+        output_resp: coverpoint mon_tr.out_Resp{
+          bins a = {2'b01};
+          bins b = {2'b10};
+        }
         output_data: coverpoint mon_tr.out_Data;
         output_correctness: coverpoint res_check;
     endgroup
@@ -72,6 +76,8 @@ class scoreboard;
             
             //Perform covergroup sampling
             cg_input.sample();
+            
+            request_array[mas_tr.tag] = mas_tr;
             
             case(mas_tr.cmd)
         
@@ -128,23 +134,18 @@ class scoreboard;
             res_check = CORRECT;
             
             exp_val = expected_data_array[mon_tr.out_Tag];
-            if (mon_tr.out_Resp != 2'b01)
-                $display("@%0d: ERROR monitor response (%h) does not match expected response (%h)",
-                    $time, mon_tr.out_Resp, 2'b01);
-                    
-            if (mon_tr.out_Data != exp_val) begin
-                $display("@%0d: ERROR monitor data (%h) does not match expected value (%h)",
-                    $time, mon_tr.out_Data, exp_val);
+            
+            if (mon_tr.out_Resp === 2'b00)
+              $display("weird");
+            
+            if (mon_tr.out_Data !== exp_val) begin
+                $display("@%0d: On port #: %d, Cmd: %40b, Data1: %h, Data2: %h, ERROR monitor data (%h) does not match expected value (%h)",
+                    $time, mon_tr.out_Port, request_array[mon_tr.out_Tag].cmd, request_array[mon_tr.out_Tag].data, request_array[mon_tr.out_Tag].data2, mon_tr.out_Data, exp_val);
                 res_check = INCORRECT;
             end
             
             //Perform covergroup sampling
             cg_output.sample();
-            
-                    
-            // else if (mon_tr.out_Tag != TODO)
-                // $display("@%0d: ERROR monitor tag (%h) does not match expected tag (%h)",
-                    // $time, mon_tr.out_Tag, TODO);
             
             // Determine if the end of test has been reached
             if(--max_trans_cnt<1)

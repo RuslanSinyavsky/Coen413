@@ -88,7 +88,10 @@ class calc_master;
   
   task reset();
       `CALC_MASTER_IF.Rst <= 1;
-      repeat(3) @(posedge `CALC_MASTER_IF.PClk);
+      `CALC_MASTER_IF.PCmd  <= 0;
+      `CALC_MASTER_IF.PData <= 0;
+      `CALC_MASTER_IF.PTag <= 0;
+      repeat(4) @(posedge `CALC_MASTER_IF.PClk);
       //#20 `CALC_MASTER_IF.Rst <= 0;
       `CALC_MASTER_IF.Rst <= 0;
    endtask: reset

@@ -33,7 +33,7 @@ class test_cfg;
 
   // Test terminates when the trans_cnt is greater than max_trans_cnt member
   //rand int trans_cnt;
-  int trans_cnt = 4;
+  int trans_cnt = 400;
 
   //constraint basic {
   //  (trans_cnt > 0) && (trans_cnt < 100);
